@@ -12,7 +12,18 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+      
+      - name: Remove notebooks directory
+        run: |
+          rm -rf notebooks/
+          rm -rf .git  
+      
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://Kavindu1124:$HF_TOKEN@huggingface.co/spaces/Kavindu1124/DeepScholar-AI main
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add -A
+          git commit -m "Sync to Hugging Face Spaces (excluding notebooks)" || echo "No changes to commit"
+          git push --force https://Kavindu1124:$HF_TOKEN@huggingface.co/spaces/Kavindu1124/DeepScholar-AI main
