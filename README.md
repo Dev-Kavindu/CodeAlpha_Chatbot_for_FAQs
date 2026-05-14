@@ -175,4 +175,24 @@ For issues or questions, please open an issue in the repository.
 
 ---
 
+<div align="center">
+
+## 👨‍💻 Developer
+
+**Developed by [Kavindu Chamod](https://github.com/Dev-Kavindu)**
+
+*AI Engineering Project*
+
+<br>
+
+### 🔗 Connect with Me
+
+[![GitHub](https://img.shields.io/badge/GitHub-Dev--Kavindu-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Dev-Kavindu)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kavindu--chamod--7159a1235-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kavindu-chamod-7159a1235)
+[![Email](https://img.shields.io/badge/Email-kchamod1124@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kchamod1124@gmail.com)
+
+<br>
+
 **Built with ❤️ for Deep Learning education**
+
+</div>
