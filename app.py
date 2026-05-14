@@ -179,4 +179,9 @@ with gr.Blocks(theme=custom_theme) as demo:
 
 # --- Launch Application ---
 if __name__ == "__main__":
-    demo.queue().launch(server_name="0.0.0.0", server_port=7860)
+    demo.launch(
+        server_name="0.0.0.0", 
+        server_port=7860, 
+        ssr=False,
+        show_api=False
+    )
