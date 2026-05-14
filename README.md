@@ -1,3 +1,14 @@
+---
+title: DeepScholar-AI
+emoji: 🎓
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+sdk_version: 4.44.1
+app_file: app.py
+pinned: false
+---
+
 # 🧠 DeepScholar AI: Multi-Modal RAG Chatbot
 
 A production-ready Retrieval-Augmented Generation (RAG) chatbot that provides intelligent answers about Deep Learning concepts using a knowledge base built from premium textbooks. The system combines LangChain, Groq (Llama 3), Chroma vector database, and Gradio with Text-to-Speech capabilities.
