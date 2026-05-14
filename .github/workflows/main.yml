@@ -7,25 +7,27 @@ jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      # 1. GitHub එකේ තියෙන කෝඩ් ටික Action Runner එකට ගන්නවා
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          lfs: true
+          fetch-depth: 0 # මුළු history එකම ගන්නවා clean කරන්න ඕන නිසා
 
-      # 2. ලොකු ෆයිල්ස් තියෙන ෆෝල්ඩර් එක අයින් කරනවා
-      - name: Remove notebooks directory
-        run: rm -rf notebooks/
-
-      # 3. Hugging Face එකට පුෂ් කරනවා
-      - name: Push to hub
+      - name: Clean History and Push
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          # 1. notebooks folder එක සම්පූර්ණයෙන්ම මකන්න
+          rm -rf notebooks/
+
+          # 2. දැනට තියෙන .git folder එක (ඉතිහාසය) මකලා අලුතෙන් Git එකක් හදන්න
+          rm -rf .git
+          git init
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git add -A
-          # වෙනසක් තියෙනවා නම් විතරක් commit කරනවා
-          git diff-index --quiet HEAD || git commit -m "Sync to HF (excluding notebooks)"
+          
+          # 3. දැන් තියෙන files ටික විතරක් ඇඩ් කරන්න (ලොකු ඒවා නැහැ දැන්)
+          git add .
+          git commit -m "Fresh sync to HF without large files"
+          
+          # 4. බලහත්කාරයෙන් (Force Push) අලුත් එකක් විදිහට යවන්න
           git push --force https://Kavindu1124:$HF_TOKEN@huggingface.co/spaces/Kavindu1124/DeepScholar-AI main
