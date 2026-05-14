@@ -160,7 +160,7 @@ with gr.Blocks(theme=custom_theme) as demo:
             ask_btn = gr.Button("Generate Answer 🚀", variant="primary")
             
             gr.Markdown("<br>### 🎧 Audio Response")
-            audio_output = gr.Audio(label="Listen to Answer", autoplay=True)
+            audio_output = gr.Audio(label="Listen to Answer")
             
         with gr.Column(scale=2):
             text_output = gr.Textbox(
