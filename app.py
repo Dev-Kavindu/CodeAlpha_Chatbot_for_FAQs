@@ -37,7 +37,17 @@ vector_db = Chroma(
     persist_directory=persist_folder,
     embedding_function=embeddings
 )
-print("✅ Database loaded successfully!")
+
+# --- DEBUGGING PRINTS ---
+# මෙතනින් අපිට බලාගන්න පුළුවන් DB එක ඇතුළේ ඇත්තටම documents තියෙනවද කියලා
+try:
+    doc_count = vector_db._collection.count()
+    print(f"✅ Database loaded successfully!")
+    print(f"🔍 DEBUG - Total documents in database: {doc_count}")
+    if doc_count == 0:
+        print("⚠️ WARNING: The database is EMPTY! Please make sure you uploaded the 'my_vector_db' folder to the space.")
+except Exception as e:
+    print(f"⚠️ DEBUG - Could not count documents: {e}")
 
 
 # --- Background Audio Cleanup Thread ---
@@ -49,9 +59,8 @@ def cleanup_old_audio_files():
     while True:
         try:
             current_time = datetime.now()
-            temp_dir = os.getcwd()  # Use current working directory
+            temp_dir = os.getcwd()  
             
-            # Check for .mp3 and .wav files
             for ext in ['*.mp3', '*.wav']:
                 pattern = os.path.join(temp_dir, ext)
                 for file_path in glob.glob(pattern):
@@ -61,13 +70,11 @@ def cleanup_old_audio_files():
                             os.remove(file_path)
                             print(f"Deleted old audio file: {file_path}")
                     except Exception as e:
-                        pass  # Ignore errors for individual files
+                        pass  
         except Exception as e:
-            pass  # Keep the thread running even if cleanup fails
+            pass  
         
-        # Sleep for 5 minutes before next check
         time.sleep(300)
-
 
 # Start the cleanup thread
 cleanup_thread = threading.Thread(target=cleanup_old_audio_files, daemon=True)
@@ -75,11 +82,14 @@ cleanup_thread.start()
 print("✅ Audio cleanup thread started")
 
 
-# --- Chatbot Response Function ---
-def chatbot_response(user_query):
+# --- Chatbot Response Function (Made fully Async) ---
+async def chatbot_response(user_query):
     try:
         # Retrieve top 5 relevant documents from vector database
         docs = vector_db.similarity_search(user_query, k=5)
+        
+        # --- DEBUGGING PRINT ---
+        print(f"🔍 DEBUG - Retrieved {len(docs)} documents for query: '{user_query}'")
         
         # Build context from retrieved documents
         context_parts = []
@@ -90,6 +100,9 @@ def chatbot_response(user_query):
         
         context = "\n\n".join(context_parts)
         
+        # --- DEBUGGING PRINT ---
+        print(f"🔍 DEBUG - Context passed to AI:\n{context[:500]}...\n(Truncated for logs)")
+
         # System prompt for the AI
         system_prompt = f"""You are an expert AI Educator specialized in Deep Learning. Your goal is to explain complex concepts from the provided book context in a clear, conversational, and highly understandable manner.
 
@@ -117,16 +130,17 @@ def chatbot_response(user_query):
         
         answer = chat_completion.choices[0].message.content
         
-        # Generate audio using edge-tts
+        # Generate audio using edge-tts (proper async await)
         unique_id = str(uuid.uuid4())
         audio_file = f"speech_{unique_id}.mp3"
         
         communicate = edge_tts.Communicate(answer, "en-US-AndrewNeural")
-        asyncio.run(communicate.save(audio_file))
+        await communicate.save(audio_file)  # Changed from asyncio.run to await
         
         return answer, audio_file
         
     except Exception as e:
+        print(f"❌ ERROR in chatbot_response: {e}")
         return f"Error occurred: {str(e)}", None
 
 
