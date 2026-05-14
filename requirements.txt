@@ -1,5 +1,7 @@
 gradio==4.44.1
 huggingface_hub==0.24.1
+pydantic==2.8.2
+pydantic-core==2.20.1
 langchain
 langchain-community
 langchain-huggingface
