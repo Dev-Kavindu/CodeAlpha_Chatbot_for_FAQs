@@ -1,2 +1,13 @@
-gradio==6.14.0
-gradio_client==2.5.0
+gradio==4.44.1
+huggingface_hub==0.24.1
+pydantic==2.8.2
+pydantic-core==2.20.1
+langchain
+langchain-community
+langchain-huggingface
+langchain-chroma
+groq
+edge-tts
+python-dotenv
+chromadb
+sentence-transformers
