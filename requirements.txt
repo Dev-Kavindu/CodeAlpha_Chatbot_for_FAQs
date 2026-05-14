@@ -1,13 +1,2 @@
-gradio>=4.21.0
-gradio_client>=0.15.0
-huggingface_hub>=0.25.0
-langchain
-langchain-community
-langchain-huggingface
-langchain-chroma
-groq
-edge-tts
-python-dotenv
-chromadb
-sentence-transformers
-pydantic>=2.0
+gradio==6.14.0
+gradio_client==2.5.0
