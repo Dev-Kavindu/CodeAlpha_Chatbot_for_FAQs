@@ -1,6 +1,5 @@
-gradio>=5.0.0
+gradio
 huggingface_hub>=0.25.0
-pydantic>=2.0
 langchain
 langchain-community
 langchain-huggingface
@@ -10,3 +9,4 @@ edge-tts
 python-dotenv
 chromadb
 sentence-transformers
+pydantic>=2.0
