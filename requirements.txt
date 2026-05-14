@@ -1,5 +1,5 @@
 gradio
-huggingface_hub==0.24.1
+huggingface_hub
 pydantic==2.8.2
 pydantic-core==2.20.1
 langchain
