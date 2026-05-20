@@ -19,7 +19,7 @@ load_dotenv(override=True)
 
 # Configuration
 TEXT_MODEL = "llama-3.1-8b-instant"
-persist_folder = "my_vector_db"
+persist_folder = "notebooks/my_vector_db"
 
 # Initialize Groq client
 api_key = os.getenv("GROQ_API_KEY")

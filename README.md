@@ -1,10 +1,10 @@
 ---
-title: DeepScholar-AI
-emoji: 🎓
-colorFrom: blue
-colorTo: indigo
+title: DeepScholar AI
+emoji: 🧠
+colorFrom: indigo
+colorTo: blue
 sdk: gradio
-sdk_version: 5.15.0
+sdk_version: 4.44.1
 app_file: app.py
 pinned: false
 python_version: "3.10"
