@@ -113,6 +113,7 @@ async def chatbot_response(user_query):
         4. **Tone**: Maintain a professional yet accessible tone. Use analogies if they help clarify the book's points.
         5. **Grounding**: Ensure your explanation is rooted in the provided books. If you add general knowledge to improve clarity, make sure it does not contradict the book's content.
         6. **Structure**: Use bullet points and bold text to highlight key terms and make the answer easy to scan.
+        7. **Cross-Context Accuracy**: STRICTLY do not combine concepts or code snippets from one book with figures or chapter numbers from another book. If you synthesize information across multiple books, explicitly mention which specific book each detail (like code, formulas, or figures) comes from.
 
         Context from Books:
         {context}
